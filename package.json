@@ -6,16 +6,18 @@
   "description": "yuitest-bot",
   "scripts": {
     "build": "yarn build:all",
-    "build:bin": "tsup src/main.ts --dts --format cjs,esm --minify --clean --sourcemap",
-    "build:all": "yarn build:bin",
-    "dev:bin": "tsup src/main.ts --dts --format cjs,esm --minify --clean --sourcemap --watch --onSuccess 'node dist/main.js'",
-    "dev": "yarn dev:bin",
+    "build:random": "tsup src/random.ts --dts --format cjs,esm --minify --clean --sourcemap",
+    "build:all": "yarn build:random",
+    "dev:random": "tsup src/random.ts --dts --format cjs,esm --minify --clean --sourcemap --watch --onSuccess 'node dist/random.js'",
+    "dev": "yarn dev:random",
+    "run": "yarn run:random",
+    "run:random": "node dist/random.js",
     "test": "jest --coverage",
     "lint": "eslint --ext .ts src",
     "format": "prettier --write ."
   },
   "bin": {
-    "main": "./dist/main.js"
+    "random": "./dist/random.js"
   },
   "exports": {
     ".": {
