@@ -1,8 +1,10 @@
+name: Schedule random tweet
 on:
   schedule:
     # UTC time
-    - cron: '00 1,8,15 * * *'
-
+    - cron: '0 */3 * * *'
+permissions:
+  contents: read
 jobs:
   test_schedule:
     runs-on: ubuntu-latest
