@@ -1,5 +1,3 @@
-import { describe, it, expect } from '@jest/globals'
-
 import { pickRandom } from './random'
 
 describe('pickRandom', () => {

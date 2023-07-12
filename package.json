@@ -5,10 +5,11 @@
   "author": "yuitest <yuitest@cjhat.net>",
   "description": "yuitest-bot",
   "scripts": {
-    "build": "tsup src/random.ts src/keep-alive.ts --dts --format cjs,esm --minify --clean --sourcemap",
+    "build": "tsup src/*.ts --format cjs,esm --minify --clean --sourcemap",
     "dev": "yarn build --watch",
     "run:random": "yarn build --onSuccess \"node dist/random.js\"",
     "run:keep-alive": "yarn build --onSuccess \"node dist/keep-alive.js\"",
+    "run:habit": "yarn build --onSuccess \"node dist/habit.js\"",
     "test": "jest --coverage",
     "lint": "eslint --ext .ts src",
     "format": "prettier --write ."
@@ -33,6 +34,7 @@
   "devDependencies": {
     "@swc/core": "^1.3.62",
     "@swc/jest": "^0.2.26",
+    "@types/jest": "^29.5.3",
     "@types/twitter": "^1.7.1",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",

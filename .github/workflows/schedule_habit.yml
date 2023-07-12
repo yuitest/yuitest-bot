@@ -1,0 +1,37 @@
+name: Schedule habits tweet
+on:
+  schedule:
+    # GitHub Actions は UTC で動作する & かなりの遅延がある (30 分のち円までは確認
+    # 日本時間の 05:30, 11:30, 17:30, 23:30 に実行
+    # → UTC での 20:30, 02:30, 08:30, 14:30
+    - cron: '30 20,2,8,14 * * *'
+permissions:
+  contents: read
+jobs:
+  keep_alive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+          cache: yarn
+          cache-dependency-path: yarn.lock
+
+      - name: Install dependencies
+        run: |
+          yarn install
+
+      - name: Run tests
+        run: |
+          yarn build
+
+      - name: Run
+        run: |
+          yarn run:habit
+        env:
+          CONSUMER_KEY: ${{secrets.CONSUMER_KEY}}
+          CONSUMER_SECRET: ${{secrets.CONSUMER_SECRET}}
+          ACCESS_TOKEN_KEY: ${{secrets.ACCESS_TOKEN_KEY}}
+          ACCESS_TOKEN_SECRET: ${{secrets.ACCESS_TOKEN_SECRET}}
+          HABITIFY_API_KEY: ${{secrets.HABITIFY_API_KEY}}

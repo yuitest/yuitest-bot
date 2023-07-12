@@ -1,5 +1,3 @@
-import { describe, it, expect } from '@jest/globals'
-
 import { buildCorpus } from './corpus'
 
 describe('buildCorpus', () => {
@@ -11,7 +9,6 @@ describe('buildCorpus', () => {
   it('すべてのメッセージは 140 文字以下である', () => {
     const corpus = buildCorpus()
     for (const message of corpus['random-messages']) {
-      console.log(message)
       expect(message.replace('\r\n', '\n').length).toBeLessThanOrEqual(140)
     }
   })
