@@ -1,6 +1,6 @@
 import { buildCorpus, Corpus } from './corpus'
 
-import { tweet } from '.'
+import { tweet } from './twitter'
 
 function keepAliveTweet(corpus: Corpus) {
   const text = corpus['keep-alive-message']

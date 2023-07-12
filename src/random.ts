@@ -1,7 +1,7 @@
 import { buildCorpus, Corpus } from './corpus'
 import { pickRandom } from './utils/random'
 
-import { tweet } from '.'
+import { tweet } from './twitter'
 
 function randomTweet(corpus: Corpus) {
   const text = pickRandom(corpus['random-messages'])
