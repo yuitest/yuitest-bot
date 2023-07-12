@@ -9,7 +9,6 @@ export function getClientFromEnv() {
   })
 }
 
-
 export function tweet(text: string) {
   const client = getClientFromEnv()
   client.post(

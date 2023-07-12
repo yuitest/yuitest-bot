@@ -1,11 +1,17 @@
 import fs from 'fs'
 
+import JSON5 from 'json5'
+
 import { tweet } from '.'
 
-function buildCorpus(): string[] {
-  const text = fs.readFileSync('./corpus.txt', 'utf-8')
-  const lines = text.split('\n')
-  return lines.map((line) => line.replace('\\r\\n', '\r\n'))
+interface Corpus {
+  'random-messages': string[]
+}
+
+function buildCorpus(): Corpus {
+  const rawContent = fs.readFileSync('./data/corpus.json5', 'utf-8')
+  const corpus = JSON5.parse(rawContent) as Corpus
+  return corpus
 }
 
 function pickRandom<T>(array: T[]): T {
@@ -15,7 +21,7 @@ function pickRandom<T>(array: T[]): T {
 
 function randomTweet() {
   const corpus = buildCorpus()
-  const text = pickRandom(corpus)
+  const text = pickRandom(corpus['random-messages'])
   tweet(text)
 }
 
