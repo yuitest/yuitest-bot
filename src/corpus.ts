@@ -5,6 +5,7 @@ import JSON5 from 'json5'
 export interface Corpus {
   'random-messages': string[]
   'keep-alive-message': string
+  license: string
 }
 
 export function buildCorpus(): Corpus {
