@@ -70,12 +70,12 @@ export interface Summary {
   allOfTasks: number
 }
 
-// export const getTodaysJournal = async (apiKey: string) => {
 export async function getTodaysJournal(
-  apiKey: string
+  apiKey: string,
+  targetDate: DateString
 ): Promise<JournalAPIResult> {
   const query = new URLSearchParams({
-    target_date: '2023-07-12T00:00:00+09:00',
+    target_date: targetDate,
   })
   const url = `${HABITIFY_API_JOURNAL_URL}?${query}`
   const response = await fetch(url, {
