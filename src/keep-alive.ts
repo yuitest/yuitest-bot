@@ -1,13 +1,14 @@
 import { buildCorpus, Corpus } from './corpus'
-
 import { tweet } from './twitter'
 
-function keepAliveTweet(corpus: Corpus) {
+async function keepAliveTweet(corpus: Corpus) {
   const text = corpus['keep-alive-message']
-  tweet(text)
+  await tweet(text)
 }
 
 if (require.main === module) {
-  const corpus = buildCorpus()
-  keepAliveTweet(corpus)
+  ;(async () => {
+    const corpus = buildCorpus()
+    await keepAliveTweet(corpus)
+  })()
 }

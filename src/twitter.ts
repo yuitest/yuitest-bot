@@ -9,13 +9,16 @@ export function getClientFromEnv() {
   })
 }
 
-export function tweet(text: string) {
+export async function tweet(text: string): Promise<void> {
   const client = getClientFromEnv()
-  client.post(
-    'statuses/update',
-    { status: text },
-    (error, _tweet, _response) => {
-      if (error) throw error
-    }
-  )
+  return new Promise((resolve, reject) => {
+    client.post(
+      'statuses/update',
+      { status: text },
+      (error, _tweet, _response) => {
+        if (error) reject(error)
+        resolve()
+      }
+    )
+  })
 }
