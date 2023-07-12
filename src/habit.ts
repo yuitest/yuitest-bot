@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 
-import { getTodaysJournal, summarizeJournal, Summary } from './habitify'
+import { getTodaysJournal, summarizeDailyJournal, Summary } from './habitify'
 import { tweet } from './twitter'
 
 export function buildMessage(
@@ -31,7 +31,7 @@ if (require.main === module) {
     const targetTime = baseDate.toFormat('HH:mm:ss')
     const queryDate = `${targetDate}T${targetTime}+09:00`
     const data = await getTodaysJournal(apiKey, queryDate)
-    const summary = summarizeJournal(data)
+    const summary = summarizeDailyJournal(data)
     const message = buildMessage(summary, targetDate, targetTime)
     tweet(message)
   })()

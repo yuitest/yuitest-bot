@@ -88,7 +88,7 @@ export async function getTodaysJournal(
   return data
 }
 
-export function summarizeJournal(data: JournalAPIResult): Summary {
+export function summarizeDailyJournal(data: JournalAPIResult): Summary {
   const summary = {
     completedTasks: 0,
     skippedTasks: 0,
@@ -97,6 +97,12 @@ export function summarizeJournal(data: JournalAPIResult): Summary {
     inProgressTasks: 0,
   }
   for (const journal of data.data) {
+    if (journal.is_archived) {
+      continue
+    }
+    if (journal.goal.periodicity !== 'daily') {
+      continue
+    }
     summary.allOfTasks += 1
     switch (journal.status) {
       case 'completed':
