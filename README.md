@@ -1,5 +1,7 @@
 # yuitest-bot
 
+![アイコン_400x400](https://github.com/yuitest/yuitest-bot/assets/726855/7e74f2da-7499-4cdc-b460-e1a9571ce8ea)
+
 現在の https://twitter.com/yuitest_bot の実装です。
 
 ## 方針
