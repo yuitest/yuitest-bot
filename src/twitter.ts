@@ -1,6 +1,6 @@
 import Twitter from 'twitter'
 
-export function getClientFromEnv() {
+function getClientFromEnv() {
   return new Twitter({
     consumer_key: process.env.CONSUMER_KEY || '',
     consumer_secret: process.env.CONSUMER_SECRET || '',
@@ -11,7 +11,13 @@ export function getClientFromEnv() {
 
 export async function tweet(text: string): Promise<void> {
   const client = getClientFromEnv()
+  const isProduction = process.env.NODE_ENV === 'production'
   return new Promise((resolve, reject) => {
+    if (!isProduction) {
+      console.log(`ツイート内容:\n${text}`)
+      resolve()
+      return
+    }
     client.post(
       'statuses/update',
       { status: text },
