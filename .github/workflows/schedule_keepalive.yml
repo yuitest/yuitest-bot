@@ -29,6 +29,7 @@ jobs:
         run: |
           yarn run:keep-alive
         env:
+          NODE_ENV: production
           CONSUMER_KEY: ${{secrets.CONSUMER_KEY}}
           CONSUMER_SECRET: ${{secrets.CONSUMER_SECRET}}
           ACCESS_TOKEN_KEY: ${{secrets.ACCESS_TOKEN_KEY}}
