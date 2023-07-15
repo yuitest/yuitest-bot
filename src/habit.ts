@@ -32,7 +32,8 @@ if (require.main === module) {
     const baseDate = DateTime.now().setZone('Asia/Tokyo')
     const targetDate = baseDate.toFormat('yyyy-MM-dd')
     const targetTime = baseDate.toFormat('HH:mm:ss')
-    const queryDate = `${targetDate}T${targetTime}+09:00`
+    const timeLimit = '23:59:59'
+    const queryDate = `${targetDate}T${timeLimit}+09:00`
     const data = await getTodaysJournal(apiKey, queryDate)
     const summary = summarizeDailyJournal(data)
     const message = buildMessage(summary, targetDate, targetTime)
