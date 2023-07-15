@@ -20,6 +20,9 @@ export function buildMessage(
   if (summary.skippedTasks > 0) {
     message += `\nスキップ: ${summary.skippedTasks} 件`
   }
+  if (ratio >= 100) {
+    message += '\n素晴らしいです ! ぜんぶ完了です。ぜんぶぜんぶぜんぶ !'
+  }
   return message
 }
 
