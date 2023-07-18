@@ -1,4 +1,4 @@
-name: Schedule habits tweet
+name: Schedule daily habits tweet
 on:
   schedule:
     # GitHub Actions は UTC で動作する & かなりの遅延がある (30 分の遅延までは確認)
@@ -28,7 +28,7 @@ jobs:
 
       - name: Run
         run: |
-          yarn run:habit
+          yarn run:dailyHabit
         env:
           NODE_ENV: production
           CONSUMER_KEY: ${{secrets.CONSUMER_KEY}}

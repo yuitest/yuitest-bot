@@ -9,7 +9,9 @@
     "dev": "yarn build --watch",
     "run:random": "yarn build --onSuccess \"node dist/random.js\"",
     "run:keep-alive": "yarn build --onSuccess \"node dist/keep-alive.js\"",
-    "run:habit": "yarn build --onSuccess \"node dist/habit.js\"",
+    "run:dailyHabit": "yarn build --onSuccess \"node dist/dailyHabit.js\"",
+    "run:weeklyHabit": "yarn build --onSuccess \"node dist/weeklyHabit.js\"",
+    "run:monthlyHabit": "yarn build --onSuccess \"node dist/monthlyHabit.js\"",
     "test": "jest --coverage",
     "lint": "eslint --ext .ts src",
     "format": "prettier --write ."
