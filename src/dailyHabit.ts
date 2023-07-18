@@ -3,7 +3,7 @@ import { DateTime } from 'luxon'
 import { getTodaysJournal, summarizeDailyJournal, Summary } from './habitify'
 import { tweet } from './twitter'
 
-export function buildMessage(
+export function buildDailyMessage(
   summary: Summary,
   targetDate: string,
   targetTime: string
@@ -36,7 +36,7 @@ if (require.main === module) {
     const queryDate = `${targetDate}T${timeLimit}+09:00`
     const data = await getTodaysJournal(apiKey, queryDate)
     const summary = summarizeDailyJournal(data)
-    const message = buildMessage(summary, targetDate, targetTime)
+    const message = buildDailyMessage(summary, targetDate, targetTime)
     tweet(message)
   })()
 }

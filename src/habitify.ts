@@ -121,3 +121,71 @@ export function summarizeDailyJournal(data: JournalAPIResult): Summary {
   }
   return summary
 }
+
+export function summarizeWeeklyJournal(data: JournalAPIResult): Summary {
+  const summary = {
+    completedTasks: 0,
+    skippedTasks: 0,
+    failedTasks: 0,
+    allOfTasks: 0,
+    inProgressTasks: 0,
+  }
+  for (const journal of data.data) {
+    if (journal.is_archived) {
+      continue
+    }
+    if (journal.goal.periodicity !== 'weekly') {
+      continue
+    }
+    summary.allOfTasks += 1
+    switch (journal.status) {
+      case 'completed':
+        summary.completedTasks += 1
+        break
+      case 'skipped':
+        summary.skippedTasks += 1
+        break
+      case 'failed':
+        summary.failedTasks += 1
+        break
+      case 'in_progress':
+        summary.inProgressTasks += 1
+        break
+    }
+  }
+  return summary
+}
+
+export function summarizeMonthlyJournal(data: JournalAPIResult): Summary {
+  const summary = {
+    completedTasks: 0,
+    skippedTasks: 0,
+    failedTasks: 0,
+    allOfTasks: 0,
+    inProgressTasks: 0,
+  }
+  for (const journal of data.data) {
+    if (journal.is_archived) {
+      continue
+    }
+    if (journal.goal.periodicity !== 'monthly') {
+      continue
+    }
+    summary.allOfTasks += 1
+    switch (journal.status) {
+      case 'completed':
+        summary.completedTasks += 1
+        break
+      case 'skipped':
+        summary.skippedTasks += 1
+        break
+      case 'failed':
+        summary.failedTasks += 1
+        break
+      case 'in_progress':
+        summary.inProgressTasks += 1
+        break
+    }
+  }
+  return summary
+}

@@ -1,4 +1,4 @@
-import { buildMessage } from './habit'
+import { buildDailyMessage } from './dailyHabit'
 
 describe('buildMessage', () => {
   it('should return a message', () => {
@@ -15,7 +15,7 @@ describe('buildMessage', () => {
 (完了 / 全タスク) = (4 / 10) = 40.0%
 失敗: 3 件
 スキップ: 1 件`
-    const actual = buildMessage(summary, targetDate, targetTime)
+    const actual = buildDailyMessage(summary, targetDate, targetTime)
     expect(actual).toEqual(expected)
   })
 })
