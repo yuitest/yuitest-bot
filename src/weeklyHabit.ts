@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 
-import { getTodaysJournal, summarizeWeeklyJournal, Summary } from './habitify'
+import { Client, summarizeWeeklyJournal, Summary } from './habitify'
 import { tweet } from './twitter'
 
 export function buildWeeklyMessage(
@@ -28,13 +28,13 @@ export function buildWeeklyMessage(
 
 if (require.main === module) {
   ;(async () => {
-    const apiKey = process.env.HABITIFY_API_KEY || ''
+    const client = Client.getClientFromEnv()
     const baseDate = DateTime.now().setZone('Asia/Tokyo')
     const targetDate = baseDate.toFormat('yyyy-MM-dd')
     const targetTime = baseDate.toFormat('HH:mm:ss')
     const timeLimit = '23:59:59'
     const queryDate = `${targetDate}T${timeLimit}+09:00`
-    const data = await getTodaysJournal(apiKey, queryDate)
+    const data = await client.fetchJournal(queryDate)
     const summary = summarizeWeeklyJournal(data)
     const message = buildWeeklyMessage(summary, targetDate, targetTime)
     tweet(message)
