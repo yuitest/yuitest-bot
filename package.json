@@ -7,6 +7,7 @@
   "scripts": {
     "build": "tsup src/*.ts --format cjs,esm --minify --clean --sourcemap",
     "dev": "yarn build --watch",
+    "run:update": "yarn build --onSuccess \"node dist/update.js\"",
     "run:random": "yarn build --onSuccess \"node dist/random.js\"",
     "run:keep-alive": "yarn build --onSuccess \"node dist/keep-alive.js\"",
     "run:dailyHabit": "yarn build --onSuccess \"node dist/dailyHabit.js\"",
