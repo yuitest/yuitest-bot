@@ -1,4 +1,4 @@
-name: Schedule random tweet
+name: Tweet on deploy
 on:
   push:
     branches:
