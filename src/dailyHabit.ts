@@ -8,10 +8,13 @@ export async function buildDailyMessage(): Promise<string> {
   const target = analysis.daily
   const ratio = (target.completed / target.total) * 100
   const targetDate = DateTime.fromJSDate(analysis.currentTime).toLocal()
+  const freshness = analysis.freshness
   let message = `#ゆいてすと日課 (${targetDate.toISO()}) の日課の達成状況
 (完了 / 全タスク) = (${target.completed} / ${target.total}) = ${ratio.toFixed(
     1
-  )}%`
+  )}%
+鮮度: +${Math.round(freshness * 100)}%
+  `
 
   if (ratio >= 100) {
     message += '\n素晴らしいです ! ぜんぶ完了です。ぜんぶぜんぶぜんぶ !'
