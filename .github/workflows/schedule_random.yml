@@ -10,23 +10,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2.4.0
+        with:
+          version: 8
       - uses: actions/setup-node@v3
         with:
           node-version: 20.x
-          cache: yarn
-          cache-dependency-path: yarn.lock
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
         run: |
-          yarn install
+          pnpm install
 
       - name: Run tests
         run: |
-          yarn build
+          pnpm build
 
       - name: Run
         run: |
-          yarn run:random
+          pnpm run:random
         env:
           NODE_ENV: production
           CONSUMER_KEY: ${{secrets.CONSUMER_KEY}}
