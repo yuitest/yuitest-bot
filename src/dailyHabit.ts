@@ -7,7 +7,9 @@ export async function buildDailyMessage(): Promise<string> {
   const analysis = await getAnalysis()
   const target = analysis.daily
   const ratio = (target.completed / target.total) * 100
-  const targetDate = DateTime.fromJSDate(analysis.currentTime).toLocal()
+  const targetDate = DateTime.fromJSDate(analysis.currentTime)
+    .setZone('Asia/Tokyo')
+    .toLocal()
   const freshness = analysis.freshness
   let message = `#ゆいてすと日課 (${targetDate.toISO()}) の日課の達成状況
 (完了 / 全タスク) = (${target.completed} / ${target.total}) = ${ratio.toFixed(
