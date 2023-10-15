@@ -11,11 +11,14 @@ export async function buildDailyMessage(): Promise<string> {
     .setZone('Asia/Tokyo')
     .toLocal()
   const freshness = analysis.freshness
+  const freshnessPercentage = Math.round(freshness * 100)
+  const freshnessText =
+    freshness > 0 ? `+${freshnessPercentage}%` : `${freshnessPercentage}%`
   let message = `#ゆいてすと日課 (${targetDate.toISO()}) の日課の達成状況
 (完了 / 全タスク) = (${target.completed} / ${target.total}) = ${ratio.toFixed(
     1
   )}%
-鮮度: +${Math.round(freshness * 100)}%
+鮮度: ${freshnessText}
   `
 
   if (ratio >= 100) {
