@@ -9,7 +9,6 @@ export async function buildDailyMessage(): Promise<string> {
   const ratio = (target.completed / target.total) * 100
   const targetDate = DateTime.fromJSDate(analysis.currentTime)
     .setZone('Asia/Tokyo')
-    .toLocal()
   const freshness = analysis.freshness
   const freshnessPercentage = Math.round(freshness * 100)
   const freshnessText =

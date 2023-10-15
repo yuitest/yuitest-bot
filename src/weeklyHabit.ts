@@ -9,7 +9,6 @@ export async function buildDailyMessage(): Promise<string> {
   const ratio = (target.completed / target.total) * 100
   const targetDate = DateTime.fromJSDate(analysis.currentTime)
     .setZone('Asia/Tokyo')
-    .toLocal()
   let message = `#ゆいてすと日課 (${targetDate.toISO()}) の週単位のタスクの達成状況
 (完了 / 全タスク) = (${target.completed} / ${target.total}) = ${ratio.toFixed(
     1
