@@ -11,8 +11,6 @@
     "run:random": "tsx src/random.ts",
     "run:keep-alive": "tsx src/keep-alive.ts",
     "run:dailyHabit": "tsx src/dailyHabit.ts",
-    "run:weeklyHabit": "tsx src/weeklyHabit.ts",
-    "run:monthlyHabit": "tsx src/monthlyHabit.ts",
     "test": "jest --coverage",
     "lint": "eslint --ext .ts src",
     "format": "prettier --write ."
