@@ -18,7 +18,9 @@ export async function buildDailyMessage(): Promise<string> {
 (完了 / 全タスク) = (${target.completed} / ${target.total}) = ${ratio.toFixed(
     1
   )}%
-鮮度: ${freshnessText}
+鮮度: ${freshnessText} (${
+    analysis.daily.completed + analysis.others.completed
+  } / ${analysis.totalSteps})
   `
 
   if (ratio >= 100) {

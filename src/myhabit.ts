@@ -12,18 +12,18 @@ interface StepAnalysis {
 
 interface RawAggregateHabitAnalysis {
   daily: StepAnalysis
-  weekly: StepAnalysis
-  monthly: StepAnalysis
+  others: StepAnalysis
   freshness: number
   currentTime: string // ISO 8601
+  totalSteps: number
 }
 
 interface AggregateHabitAnalysis {
   daily: StepAnalysis
-  weekly: StepAnalysis
-  monthly: StepAnalysis
+  others: StepAnalysis
   freshness: number
   currentTime: Date
+  totalSteps: number
 }
 
 export const getAnalysis = async (): Promise<AggregateHabitAnalysis> => {
