@@ -2,9 +2,9 @@ name: Schedule daily habits tweet
 on:
   schedule:
     # GitHub Actions は UTC で動作する & かなりの遅延がある (30 分の遅延までは確認)
-    # 日本時間の 05:30, 11:30, 17:30, 23:30 に実行
-    # → UTC での 20:30, 02:30, 08:30, 14:30
-    - cron: '30 20,2,8,14 * * *'
+    # 日本時間の 11:30, 17:30, 20:30, 23:30 に実行
+    # → UTC での 02:30, 08:30, 11:30, 14:30 に実行
+    - cron: '30 2,8,11,14 * * *'
 permissions:
   contents: read
 jobs:
