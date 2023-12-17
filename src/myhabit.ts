@@ -3,8 +3,10 @@ import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
 interface StepAnalysis {
   total: number
   completed: number
+  overdoing: number
   incompletes: number
   isCompleted: boolean
+  isOverdoing: boolean
   isIncomplete: boolean
   isMultiple: boolean
   isSingle: boolean
@@ -16,6 +18,7 @@ interface RawAggregateHabitAnalysis {
   freshness: number
   currentTime: string // ISO 8601
   totalSteps: number
+  actionsInDay: number
 }
 
 interface AggregateHabitAnalysis {
@@ -24,6 +27,7 @@ interface AggregateHabitAnalysis {
   freshness: number
   currentTime: Date
   totalSteps: number
+  actionsInDay: number
 }
 
 export const getAnalysis = async (): Promise<AggregateHabitAnalysis> => {

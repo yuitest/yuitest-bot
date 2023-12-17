@@ -12,15 +12,20 @@ export async function buildDailyMessage(): Promise<string> {
   )
   const freshness = analysis.freshness
   const freshnessPercentage = Math.round(freshness * 100)
+
+  const completedActions = analysis.daily.completed + analysis.others.completed
+  const tobeTotal = analysis.daily.total + analysis.others.total
+  const overdoingActions = analysis.daily.overdoing + analysis.others.overdoing
+  const actionsInDay = analysis.actionsInDay
   const freshnessText =
     freshness > 0 ? `+${freshnessPercentage}%` : `${freshnessPercentage}%`
-  let message = `#ゆいてすと日課 (${targetDate.toISO()}) の日課の達成状況
+  let message = `#ゆいてすと日課 (${targetDate.toISO()}) の達成状況
 (完了 / 全タスク) = (${target.completed} / ${target.total}) = ${ratio.toFixed(
     1
   )}%
-鮮度: ${freshnessText} (${
-    analysis.daily.completed + analysis.others.completed
-  } / ${analysis.totalSteps})
+今日の行動数: ${actionsInDay} 回
+鮮度: ${freshnessText} (${completedActions} / ${tobeTotal})
+期間内のやりすぎ: ${overdoingActions} 回
   `
 
   if (ratio >= 100) {
