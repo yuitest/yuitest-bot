@@ -31,8 +31,7 @@ jobs:
 
       - name: Run
         run: |
-          echo 'しばらく停止'
-          # pnpm run:dailyHabit
+          pnpm run:dailyHabit
         env:
           NODE_ENV: production
           CONSUMER_KEY: ${{secrets.CONSUMER_KEY}}
