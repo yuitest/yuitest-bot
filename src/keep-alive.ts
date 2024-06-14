@@ -1,4 +1,4 @@
-import { buildCorpus, Corpus } from './corpus'
+import { type Corpus, buildCorpus } from './corpus'
 import { tweet } from './twitter'
 
 async function keepAliveTweet(corpus: Corpus) {
