@@ -30,7 +30,8 @@ jobs:
 
       - name: Run
         run: |
-          pnpm run:keep-alive
+          echo 'twitter (現 X) で like が非表示になったのでツイートはしません'
+          # pnpm run:keep-alive
         env:
           NODE_ENV: production
           CONSUMER_KEY: ${{secrets.CONSUMER_KEY}}
