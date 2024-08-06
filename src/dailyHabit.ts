@@ -25,8 +25,7 @@ export async function buildDailyMessage(): Promise<string> {
   )}%
 今日の行動数: ${actionsInDay} 回
 鮮度: ${freshnessText} (${completedActions} / ${tobeTotal})
-期間内のやりすぎ: ${overdoingActions} 回
-  `
+`
 
   if (ratio >= 100) {
     message += '\n素晴らしいです ! ぜんぶ完了です。ぜんぶぜんぶぜんぶ !'
