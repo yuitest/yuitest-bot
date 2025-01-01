@@ -3,16 +3,20 @@ import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3'
 interface StepAnalysis {
   total: number
   completed: number
-  overdoing: number
   incompletes: number
   isCompleted: boolean
-  isOverdoing: boolean
   isIncomplete: boolean
   isMultiple: boolean
   isSingle: boolean
+  freshness: number
+  weight: number
+  unavailable: number
+  actionsInDay: number
+  available: number
 }
 
 interface RawAggregateHabitAnalysis {
+  total: StepAnalysis
   daily: StepAnalysis
   others: StepAnalysis
   freshness: number

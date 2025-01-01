@@ -10,13 +10,12 @@ export async function buildDailyMessage(): Promise<string> {
   const targetDate = DateTime.fromJSDate(analysis.currentTime).setZone(
     'Asia/Tokyo'
   )
-  const freshness = analysis.freshness
+  const freshness = analysis.total.freshness
   const freshnessPercentage = Math.round(freshness * 100)
 
   const completedActions = analysis.daily.completed + analysis.others.completed
   const tobeTotal = analysis.daily.total + analysis.others.total
-  const overdoingActions = analysis.daily.overdoing + analysis.others.overdoing
-  const actionsInDay = analysis.actionsInDay
+  const actionsInDay = analysis.total.actionsInDay
   const freshnessText =
     freshness > 0 ? `+${freshnessPercentage}%` : `${freshnessPercentage}%`
   let message = `#ゆいてすと日課 (${targetDate.toISO()}) の達成状況
