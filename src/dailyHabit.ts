@@ -5,28 +5,34 @@ import { tweet } from './twitter'
 
 export async function buildDailyMessage(): Promise<string> {
   const analysis = await getAnalysis()
-  const target = analysis.daily
-  const ratio = (target.completed / target.total) * 100
-  const targetDate = DateTime.fromJSDate(analysis.currentTime).setZone(
+  const targetDate = DateTime.fromISO(analysis.currentDate).setZone(
     'Asia/Tokyo'
   )
-  const freshness = analysis.total.freshness
-  const freshnessPercentage = Math.round(freshness * 100)
 
-  const completedActions = analysis.daily.completed + analysis.others.completed
-  const tobeTotal = analysis.daily.total + analysis.others.total
-  const actionsInDay = analysis.total.actionsInDay
+  const dailyCompleted = analysis.summary.daily.completed
+  const dailyTotal = analysis.summary.daily.total
+  let dailyRatio = (dailyCompleted / dailyTotal) * 100
+  if (dailyCompleted === dailyTotal) {
+    dailyRatio = 100
+  } else {
+    dailyRatio = Math.round(dailyRatio)
+  }
+  const freshness = analysis.summary.all.freshness / analysis.summary.all.total
+  const freshnessPercentage = Math.round(freshness * 100)
+  const allCompleted = analysis.summary.all.completed
+  const allTotal = analysis.summary.all.total
+  const allRatio = Math.round((allCompleted / allTotal) * 100)
+
   const freshnessText =
-    freshness > 0 ? `+${freshnessPercentage}%` : `${freshnessPercentage}%`
-  let message = `#ゆいてすと日課 (${targetDate.toISO()}) の達成状況
-(完了 / 全タスク) = (${target.completed} / ${target.total}) = ${ratio.toFixed(
-    1
-  )}%
-今日の行動数: ${actionsInDay} 回
-鮮度: ${freshnessText} (${completedActions} / ${tobeTotal})
+    freshness > 0 ? `${freshnessPercentage}%` : `${freshnessPercentage}%`
+  let message = `#ゆいてすと日課 (${targetDate.toISO()}) の達成状況 (v2025.4.28)
+(完了) / (総数)
+Daily: ${dailyCompleted} / ${dailyTotal} = ${dailyRatio}%
+All: ${allCompleted} / ${allTotal} = ${allRatio}%
+鮮度: ${freshnessText}
 `
 
-  if (ratio >= 100) {
+  if (dailyRatio >= 100) {
     message += '\n素晴らしいです ! ぜんぶ完了です。ぜんぶぜんぶぜんぶ !'
   }
   return message

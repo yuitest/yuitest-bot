@@ -1,40 +1,22 @@
 import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3'
 
-interface StepAnalysis {
+interface V2Analysis {
+  version: number
+  currentDate: string
+  summary: {
+    all: V2AnalysisSegment
+    daily: V2AnalysisSegment
+    nonDaily: V2AnalysisSegment
+    tags: Record<string, V2AnalysisSegment>
+  }
+}
+interface V2AnalysisSegment {
   total: number
   completed: number
-  incompletes: number
-  isCompleted: boolean
-  isIncomplete: boolean
-  isMultiple: boolean
-  isSingle: boolean
   freshness: number
-  weight: number
-  unavailable: number
-  actionsInDay: number
-  available: number
 }
 
-interface RawAggregateHabitAnalysis {
-  total: StepAnalysis
-  daily: StepAnalysis
-  others: StepAnalysis
-  freshness: number
-  currentTime: string // ISO 8601
-  totalSteps: number
-  actionsInDay: number
-}
-
-interface AggregateHabitAnalysis {
-  daily: StepAnalysis
-  others: StepAnalysis
-  freshness: number
-  currentTime: Date
-  totalSteps: number
-  actionsInDay: number
-}
-
-export const getAnalysis = async (): Promise<AggregateHabitAnalysis> => {
+export const getAnalysis = async (): Promise<V2Analysis> => {
   const bucketName = process.env.HABIT_ANALYSIS_S3_BUCKET ?? ''
   const accessKeyId = process.env.HABIT_ANALYSIS_AWS_ACCESS_KEY_ID ?? ''
   const secretAccessKey = process.env.HABIT_ANALYSIS_AWS_SECRET_ACCESS_KEY ?? ''
@@ -48,15 +30,13 @@ export const getAnalysis = async (): Promise<AggregateHabitAnalysis> => {
   })
   const getCommand = new GetObjectCommand({
     Bucket: bucketName,
-    Key: 'analysis.latest.json',
+    Key: 'analysis.v2.json',
   })
   const downloading = s3Client.send(getCommand)
   const downloaded = await downloading
   const body = await downloaded.Body?.transformToString()
-  const analysis = JSON.parse(body || '') as RawAggregateHabitAnalysis
-  const currentTime = new Date(analysis.currentTime)
+  const analysis = JSON.parse(body || '') as V2Analysis
   return {
     ...analysis,
-    currentTime,
   }
 }
