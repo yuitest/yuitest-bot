@@ -33,20 +33,20 @@
     "package.json"
   ],
   "devDependencies": {
-    "@biomejs/biome": "^2.1.2",
-    "@swc/core": "1.13.0",
+    "@biomejs/biome": "^2.1.4",
+    "@swc/core": "1.13.3",
     "@swc/jest": "^0.2.39",
     "@types/jest": "^30.0.0",
-    "@types/luxon": "^3.6.2",
+    "@types/luxon": "^3.7.1",
     "@types/twitter": "^1.7.4",
-    "jest": "^30.0.4",
+    "jest": "^30.0.5",
     "pkg": "^5.8.1",
     "prettier": "^3.6.2",
-    "tsx": "^4.20.3",
-    "typescript": "^5.8.3"
+    "tsx": "^4.20.4",
+    "typescript": "^5.9.2"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.848.0",
+    "@aws-sdk/client-s3": "^3.864.0",
     "json5": "^2.2.3",
     "luxon": "^3.7.1",
     "tsup": "^8.5.0",
