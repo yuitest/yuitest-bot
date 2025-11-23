@@ -1,4 +1,4 @@
-import { type Corpus, buildCorpus } from './corpus'
+import { buildCorpus, type Corpus } from './corpus'
 import { tweet } from './twitter'
 import { pickRandom } from './utils/random'
 
